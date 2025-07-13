@@ -67,9 +67,11 @@ const Result = ({ articles }) => {
           <ol>
             {articles.map((article) => {
               const snippet = getPlainText(article.snippet);
-              const time = (snippet.length * 60) / 200;
+              const time = (article.wordcount) / 200;
               const timeForRead =
-                time < 60 ? Math.round(time) + " s" : time / 60 + " m";
+              article.wordcount < 60 ? Math.round(time) + " s" : Math.round(time) + " m";
+              console.log("time",time)
+              console.log(timeForRead)
               return (
                 <>
                   <li key={article.pageid}>
@@ -83,7 +85,7 @@ const Result = ({ articles }) => {
                       </a>
                     </Title>
                     <p>{snippet}</p>
-                    <div>Word count : {snippet.length}</div>
+                    <div>Word count : {article.wordcount}</div>
                     <div>Time for reading : {timeForRead}</div>
                   </li>
                 </>
